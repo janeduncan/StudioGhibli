@@ -28,6 +28,8 @@ header {
 }
 
 h2 {
+  font-family: 'Amatic SC', cursive;
+  font-size: 2em;
   margin-top: 0px;
   text-align: center;
 }

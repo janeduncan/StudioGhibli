@@ -6,14 +6,20 @@ const FilmListView = function(container){
 }
 
 FilmListView.prototype.bindEvents = function(){
-  PubSub.subscribe("Films:films-data-ready", (evt) => {
-    this.films = evt.detail;
-    this.render();
+  PubSub.subscribe("Films:films-ready", (event) => {
+    // this.films = event.detail;
+    // this.render();
+    this.clearList();
+    this.render(event.detail)
   })
 }
 
-FilmListView.prototype.render = function() {
-  this.films.forEach((film) => {
+FilmListView.prototype.clearList = function() {
+  this.container.innerHTML = '';
+}
+
+FilmListView.prototype.render = function(films) {
+  films.forEach((film) => {
     const filmView = new FilmView(this.container, film);
     filmView.render();
   })

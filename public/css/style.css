@@ -7,6 +7,11 @@ main {
   clear: left;
 }
 
+#director-dropdown{
+  font-weight: bold;
+  text-align: center;
+}
+
 /* Card formatting */
 
 * {
@@ -77,4 +82,8 @@ p {
 
 .card:nth-child(even) h2 {
   background-image: linear-gradient(120deg, #ffc3a0 0%, #ffafbd 100%);
+}
+
+.director-select{
+  color: purple;
 }

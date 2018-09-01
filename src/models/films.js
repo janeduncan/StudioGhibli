@@ -29,13 +29,6 @@ Films.prototype.handleData = function(data){
   this.publishDirectors(this.films);
 }
 
-
-
-
-
-
-
-
 Films.prototype.publishDirectors = function(data) {
   this.films = data;
   this.directors = this.uniqueDirectorList();
@@ -46,7 +39,6 @@ Films.prototype.publishDirectors = function(data) {
 Films.prototype.directorList = function() {
   const fullList = this.films.map(film => film.director);
   return fullList;
-  console.log(fullList);
 }
 
 Films.prototype.uniqueDirectorList = function() {
@@ -55,16 +47,6 @@ Films.prototype.uniqueDirectorList = function() {
   });
 }
 
-
-
-
-
-
-
-
-
-
-
 Films.prototype.filmsByDirector = function(directorIndex) {
   const selectedDirector = this.directors[directorIndex];
   return this.films.filter((film) => {
@@ -72,18 +54,10 @@ Films.prototype.filmsByDirector = function(directorIndex) {
   });
 };
 
-
 Films.prototype.publishFilmsByDirector = function(directorIndex) {
   const foundFilms = this.filmsByDirector(directorIndex);
   PubSub.publish('Directors:directors-ready', foundFilms);
   console.log(foundFilms);
 };
-
-
-
-
-
-
-
 
 module.exports = Films;

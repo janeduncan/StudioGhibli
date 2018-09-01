@@ -5,7 +5,7 @@ const FilmView = function(container, film){
   this.film = film;
 }
 
-FilmView.prototype.render = function () {
+FilmView.prototype.render = function (film) {
   const card = document.createElement('div');
   card.setAttribute('class', 'card');
 

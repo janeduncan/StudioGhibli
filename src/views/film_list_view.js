@@ -7,10 +7,9 @@ const FilmListView = function(container){
 
 FilmListView.prototype.bindEvents = function(){
   PubSub.subscribe("Films:films-ready", (event) => {
-    // this.films = event.detail;
-    // this.render();
+    this.films = event.detail;
     this.clearList();
-    this.render(event.detail)
+    this.render();
   })
 }
 
@@ -18,8 +17,8 @@ FilmListView.prototype.clearList = function() {
   this.container.innerHTML = '';
 }
 
-FilmListView.prototype.render = function(films) {
-  films.forEach((film) => {
+FilmListView.prototype.render = function() {
+  this.films.forEach((film) => {
     const filmView = new FilmView(this.container, film);
     filmView.render();
   })

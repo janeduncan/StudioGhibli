@@ -4,7 +4,7 @@ const PubSub = require("../helpers/pub_sub.js");
 const Films = function(url){
   this.url = url;
   this.films = [];
-  this.directors = [];
+  this.filmDirectors = [];
 };
 
 Films.prototype.bindEvents = function () {
@@ -25,30 +25,28 @@ Films.prototype.getData = function(){
 
 Films.prototype.handleData = function(data){
   this.films = data;
-  PubSub.publish("Films:films-ready", this.films);
-  this.publishDirectors(this.films);
+  PubSub.publish('Films:film-data-ready', this.films);
+  this.publishDirectorsFilms(this.films);
 }
 
-Films.prototype.publishDirectors = function(data) {
-  this.films = data;
-  this.directors = this.uniqueDirectorList();
-  PubSub.publish('Directors:directors-ready', this.directors);
-  console.log(this.directors);
+Films.prototype.publishDirectorsFilms = function(data) {
+  this.filmDirectors = this.uniqueDirectorList();
+  PubSub.publish('Films:selected-films-ready', this.filmDirectors);
 }
 
-Films.prototype.directorList = function() {
+Films.prototype.directorFilmsList = function() {
   const fullList = this.films.map(film => film.director);
   return fullList;
 }
 
 Films.prototype.uniqueDirectorList = function() {
-  return this.directorList().filter((film, index, array) => {
+  return this.directorFilmsList().filter((film, index, array) => {
     return array.indexOf(film) === index;
   });
 }
 
 Films.prototype.filmsByDirector = function(directorIndex) {
-  const selectedDirector = this.directors[directorIndex];
+  const selectedDirector = this.filmDirectors[directorIndex];
   return this.films.filter((film) => {
     return film.director === selectedDirector;
   });
@@ -56,8 +54,7 @@ Films.prototype.filmsByDirector = function(directorIndex) {
 
 Films.prototype.publishFilmsByDirector = function(directorIndex) {
   const foundFilms = this.filmsByDirector(directorIndex);
-  PubSub.publish('Directors:directors-ready', foundFilms);
-  console.log(foundFilms);
+  PubSub.publish('Films:film-data-ready', foundFilms);
 };
 
 module.exports = Films;

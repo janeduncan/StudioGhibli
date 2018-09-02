@@ -3,7 +3,6 @@ const FilmListView = require("./views/film_list_view.js");
 const SelectView = require("./views/select_view.js");
 
 document.addEventListener('DOMContentLoaded', () => {
-
   const selectElement = document.querySelector('select#director-select');
   const selectView = new SelectView(selectElement);
   selectView.bindEvents();
@@ -13,7 +12,6 @@ document.addEventListener('DOMContentLoaded', () => {
   filmListView.bindEvents();
 
   const films = new Films("https://ghibliapi.herokuapp.com/films");
-  films.getData();
   films.bindEvents();
-
+  films.getData();
 })

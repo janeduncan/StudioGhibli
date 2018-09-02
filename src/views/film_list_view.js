@@ -6,9 +6,9 @@ const FilmListView = function(container){
 }
 
 FilmListView.prototype.bindEvents = function(){
-  PubSub.subscribe("Films:films-ready", (event) => {
-    this.films = event.detail;
+  PubSub.subscribe("Films:film-data-ready", (event) => {
     this.clearList();
+    this.films = event.detail;
     this.render();
   })
 }

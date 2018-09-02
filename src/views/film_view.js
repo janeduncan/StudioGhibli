@@ -6,6 +6,9 @@ const FilmView = function(container, film){
 }
 
 FilmView.prototype.render = function (film) {
+  const filmContainer = document.createElement('div');
+  filmContainer.classList.add('film');
+
   const card = document.createElement('div');
   card.setAttribute('class', 'card');
 
@@ -18,7 +21,8 @@ FilmView.prototype.render = function (film) {
   const rating = this.createFilmDetailsList();
   card.appendChild(rating);
 
-  this.filmsContainer.appendChild(card);
+  filmContainer.appendChild(card);
+  this.filmsContainer.appendChild(filmContainer);
 };
 
 FilmView.prototype.createFilmHeading = function () {
@@ -40,12 +44,6 @@ FilmView.prototype.createFilmDetailsList = function () {
 }
 
 FilmView.prototype.populateList = function (list) {
-    // const filmDirectorListItem = document.createElement('li');
-    // filmDirectorListItem.textContent = `Director: ${this.film.director}`;
-    // list.appendChild(filmDirectorListItem);
-    // const filmProducerListItem = document.createElement('li');
-    // filmProducerListItem.textContent = `Producer: ${this.film.producer}`;
-    // list.appendChild(filmProducerListItem);
     const filmReleaseListItem = document.createElement('li');
     filmReleaseListItem.textContent = `Release Date: ${this.film.release_date}`;
     list.appendChild(filmReleaseListItem);

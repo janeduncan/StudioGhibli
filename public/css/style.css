@@ -10,6 +10,8 @@ main {
 #director-dropdown{
   font-weight: bold;
   text-align: center;
+  padding-top: 5px;
+  padding-bottom: 10px;
 }
 
 /* Card formatting */
